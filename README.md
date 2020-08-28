@@ -8,4 +8,4 @@ This is a URL shortener, it doesn't have anything special.
 Why not?
 
 ## Seriously, why did you made one?
-Cause I needed a project to try Node.js, Vue.js etc... since I've never used them.
+Cause I needed a project to try Node.js, Vue.js, MongoDB since I've never used them.
