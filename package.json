@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "supervisor app.js"
+    "dev": "NODE_ENV=dev MONGO_URL=localhost:27017/yaus supervisor app.js"
   },
   "repository": {
     "type": "git",

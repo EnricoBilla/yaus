@@ -30,7 +30,7 @@ api.get('/urls/:id', async (req, res) => {
         .catch(error => {
             res.json({
                 status: 500,
-                errors: error,
+                errors: process.env.NODE_ENV === 'dev' ? error : '🦄',
             });
         });
 });
@@ -52,7 +52,7 @@ api.post('/urls', async (req, res) => {
         }).catch(error => {
             res.json({
                 status: 500,
-                errors: error,
+                errors: process.env.NODE_ENV === 'dev' ? error : '🦄',
             });
         });
 
