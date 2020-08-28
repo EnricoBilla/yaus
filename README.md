@@ -4,7 +4,7 @@
 ## What is this?
 This is a URL shortener, it doesn't have anything special.
 
-## Why did you made one, tho?
+## Why did you make one, tho?
 Why not?
 
 ## Seriously, why did you made one?
