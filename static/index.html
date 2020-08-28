@@ -1,4 +1,18 @@
-<h1>YAUS</h1>
-<h3>Yet Another URL Shortener</h3>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <h1>YAUS</h1>
+        <h3>Yet Another URL Shortener</h3>
 
-<p>the frontend is working</p>
+        <div id="app">
+            <input v-model="id" placeholder="ID">
+            <input v-model="redirect" placeholder="https://google.com">
+            <button v-on:click="addRedirect">Submit</button>
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>
