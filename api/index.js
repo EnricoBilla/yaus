@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const monk = require('monk');
 const yup = require('yup');
+const { nanoid } = require('nanoid');
 
 const api = express();
 
@@ -9,7 +10,7 @@ const api = express();
 // const db = monk(mongo_url);
 
 const schema = yup.object().shape({
-    id: yup.string().matches(/^[\w\-]+$/),
+    id: yup.string().matches(/^[\w\-]*$/).nullable(),
     redirect: yup.string().url().required(),
 });
 
@@ -37,27 +38,27 @@ api.post('/urls', async (req, res) => {
 
     var { id, redirect } = req.body;
 
-    console.log({
-        id,
-        redirect,
-    })
-
-    try {
-        await schema.validate({
+    await schema.validate({
             id,
             redirect,
-        });
-    } catch (error) {
-        return res.json({
-            status: 500,
-        });
-    }
+        }).then(value => {
+            if (!value.id) {
+                value.id = nanoid(6);
+            }
+            
+            // TODO add value to mongodb
 
-    res.json({
-        id: id,
-        redirect: redirect,
-        message: "created new redirect",
-    });
+            return res.json({
+                id: value.id,
+                redirect: value.redirect,
+                status: 200,
+            })
+        }).catch(error => {
+            return res.json({
+                status: 500,
+                errors: error.message,
+            })
+        });
 
 });
 
