@@ -9,8 +9,8 @@ app.use('/api', api);
 
 app.get('/:id', (req, res) => {
     // TODO redirect to the requested url
-    const { id: redirect_id } = req.params;
-    res.send(`Redirect to ${redirect_id}`);
+    const { id } = req.params;
+    res.send(`Redirect to ${id}`);
 });
 
 app.listen(PORT, () => {
