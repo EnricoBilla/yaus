@@ -9,7 +9,7 @@ const mongo_url = 'localhost:27017/myproject'; //TODO env variables
 const db = monk(url);
 
 const schema = yup.object().shape({
-    id: yup.string().matches(/[\w]+/),
+    id: yup.string().matches(/^[\w\-]+$/),
     redirect: yup.string().url().required(),
 });
 
