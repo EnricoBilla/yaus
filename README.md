@@ -7,5 +7,5 @@ This is a URL shortener, it doesn't have anything special.
 ## Why did you make one, tho?
 Why not?
 
-## Seriously, why did you made one?
+## Seriously, why did you make one?
 Cause I needed a project to try Node.js, Vue.js, MongoDB since I've never used them.
