@@ -6,58 +6,54 @@ const { nanoid } = require('nanoid');
 
 const api = express();
 
-// const mongo_url = 'localhost:27017/yaus'; //TODO env variables
-// const db = monk(mongo_url);
+const mongo_url = 'localhost:27017/yaus'; //TODO env variables
+const db = monk(mongo_url);
+const urls = db.get('urls');
+urls.createIndex({ id: 1 }, { unique: true });
 
 const schema = yup.object().shape({
     id: yup.string().matches(/^[\w\-]*$/).nullable(),
     redirect: yup.string().url().required(),
 });
 
-// db.then(() => {
-//   console.log('Connected correctly to server')
-// })
-
 api.use(express.json());
 api.use(bodyParser.json());
 
-api.get('/urls/:id', (req, res) => {
+api.get('/urls/:id', async (req, res) => {
+
     const { id } = req.params;
 
-    // TODO give info about redirect to id
-    res.json({
-        id: id,
-        redirect: "https://google.com",
-        clicks: 17,
-        message: "here you go",
-    });
+    await urls.findOne({id: id})
+        .then(result => {
+            res.json(result);
+        })
+        .catch(error => {
+            res.json({
+                status: 500,
+                errors: error,
+            });
+        });
 });
 
 api.post('/urls', async (req, res) => {
-    // TODO create new redirect url
 
-    var { id, redirect } = req.body;
+    const { id, redirect } = req.body;
 
     await schema.validate({
             id,
             redirect,
-        }).then(value => {
+        }).then(async (value) => {
             if (!value.id) {
-                value.id = nanoid(6);
+                value.id = nanoid(6); // possible collision?
             }
-            
-            // TODO add value to mongodb
-
-            return res.json({
-                id: value.id,
-                redirect: value.redirect,
-                status: 200,
-            })
+            console.log(value);
+            const created = await urls.insert(Object.assign(value, {clicks:0}));
+            res.json(created);
         }).catch(error => {
-            return res.json({
+            res.json({
                 status: 500,
-                errors: error.message,
-            })
+                errors: error,
+            });
         });
 
 });
