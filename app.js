@@ -1,10 +1,9 @@
 const express = require('express');
-const monk = require('monk');
 
 const { api, urls } = require('./api')
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('./static'))
 app.use('/api', api);

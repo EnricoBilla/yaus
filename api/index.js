@@ -6,8 +6,8 @@ const { nanoid } = require('nanoid');
 
 const api = express();
 
-const mongo_url = 'localhost:27017/yaus'; //TODO env variables
-const db = monk(mongo_url);
+const MONGO_URL = process.env.MONGO_URL;
+const db = monk(MONGO_URL);
 const urls = db.get('urls');
 urls.createIndex({ id: 1 }, { unique: true });
 
