@@ -58,4 +58,4 @@ api.post('/urls', async (req, res) => {
 
 });
 
-module.exports = api;
+module.exports = { api, urls };

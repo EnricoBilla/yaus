@@ -1,12 +1,7 @@
 const express = require('express');
 const monk = require('monk');
 
-const api = require('./api')
-
-const mongo_url = 'localhost:27017/yaus'; //TODO env variables
-const db = monk(mongo_url);
-const urls = db.get('urls');
-urls.createIndex({ id: 1 }, { unique: true });
+const { api, urls } = require('./api')
 
 const app = express();
 const PORT = 3000;
