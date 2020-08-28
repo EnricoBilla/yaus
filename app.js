@@ -14,5 +14,5 @@ app.get('/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`)
+    console.log(`YAUS running at http://localhost:${PORT}`)
 })
