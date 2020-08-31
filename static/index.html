@@ -1,16 +1,62 @@
 <html>
     <head>
-        <link rel="stylesheet" href="index.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <h1>YAUS</h1>
-        <h3>Yet Another URL Shortener</h3>
 
+        <!-- Main Vue app -->
         <div id="app">
-            <input v-model="id" placeholder="ID">
-            <input v-model="redirect" placeholder="https://google.com">
-            <button v-on:click="addRedirect">Submit</button>
+
+            <div class="columns is-centered">
+                <div class="column is-half is-vcentered">
+
+                    <!-- Header -->
+                    <div class="content">
+                        <br />
+                        <p class="title is-2">YAUS</p>
+                        <p class="subtitle is-5">Yet Another URL Shortener</p>
+                        <br />
+                    </div>
+                    
+                    <!-- Form -->
+                    <div class="box box-form">
+                        <form @submit.prevent="addRedirect">
+            
+                            <!-- ID text input -->
+                            <div class="field">
+                                <label class="label" for="id">ID</label>
+                                <div class="control">
+                                    <input v-model="id" placeholder="ID" class="input" type="text">
+                                </div>
+                            </div>
+                                
+                            <!-- Redirect text input-->
+                            <div class="field">
+                            <label class="label" for="redirect">Redirect to</label>
+                                <div class="control" style="height: 62px;">
+                                    <input v-model="redirect" v-bind:class="{ 'is-danger': !valid_url }" placeholder="https://example.com" class="input" type="text">
+                                    <p class="help" v-bind:class="{ info: !is_error, error: is_error }"><span v-html="message"></span></p>
+                                </div>
+                            </div>
+            
+                            <!-- Submit button -->
+                            <div class="field">
+                            <label class="label" for="submit"></label>
+                                <div class="control">
+                                    <button :disabled="can_submit == false" class="button is-primary is-light">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+    
+                </div>
+            </div>
+
         </div>
         
         <script src="index.js"></script>

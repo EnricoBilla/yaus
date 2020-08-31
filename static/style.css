@@ -1,0 +1,34 @@
+html {
+    background-color: #effffe; /* #cffffa */
+}
+
+.is-vcentered {
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.title {
+    text-align: center;
+    color: rgb(37 37 37 / 70%);
+    text-shadow: 3px 2px 3px rgb(35 35 35 / 18%);
+}
+
+.subtitle {
+    text-align: center;
+    color: rgb(37 37 37 / 70%);
+    text-shadow: 3px 2px 3px rgb(35 35 35 / 18%);
+}
+
+input.input:focus {
+    border-color: #00d1b2;
+}
+
+.error {
+    color: #f44336;
+}
+
+.info {
+    color: #39d292;
+}
