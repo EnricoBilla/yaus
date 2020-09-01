@@ -12,7 +12,7 @@ app.get('/:id', async (req, res) => {
 
     const { id } = req.params;
 
-    await urls.findOne({id: id})
+    await urls.findOneAndUpdate({id: id}, { $inc: { clicks: 1} })
         .then(result => {
             res.redirect(result.redirect);
         })
