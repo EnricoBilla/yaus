@@ -25,9 +25,11 @@ var app = new Vue({
             .then((response_json) => {
                 if (response_json.status === 200 && !!response_json.id) {
                     short_url = `${window.location.origin}/${response_json.id}`
-                    navigator.clipboard.writeText(short_url)
+                    if (!!navigator.clipboard) {
+                        navigator.clipboard.writeText(short_url)
                         .then(() => {})
                         .catch(() => console.log("Unable to copy to clipboard"));
+                    }
                     self.message = `Successfully created a short URL, available here (<a href=${short_url}>${short_url}</a>)`;
                     self.is_error = false;
                 } else {
