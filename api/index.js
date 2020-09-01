@@ -13,7 +13,7 @@ urls.createIndex({ id: 1 }, { unique: true });
 
 const schema = yup.object().shape({
     id: yup.string().matches(/^[\w\-]*$/).nullable(),
-    redirect: yup.string().url().required(),
+    redirect: yup.string().matches(/^(https?:\/\/)((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i).required(),
 });
 
 api.use(express.json());
