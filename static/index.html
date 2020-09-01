@@ -37,7 +37,7 @@
                             <!-- Redirect text input-->
                             <div class="field">
                             <label class="label" for="redirect">Redirect to</label>
-                                <div class="control" style="height: 62px;">
+                                <div class="control" style="min-height: 62px;">
                                     <input v-model="redirect" v-bind:class="{ 'is-danger': !valid_url }" placeholder="https://example.com" class="input" type="text">
                                     <p class="help" v-bind:class="{ info: !is_error, error: is_error }"><span v-html="message"></span></p>
                                 </div>
