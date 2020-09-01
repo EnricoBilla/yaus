@@ -47,8 +47,8 @@ api.post('/urls', async (req, res) => {
                 value.id = nanoid(6); // possible collision?
             }
             console.log(value);
-            const created = await urls.insert(Object.assign(value, {clicks:0, status:200}));
-            res.json(created);
+            const created = await urls.insert(Object.assign(value, {clicks:0}));
+            res.json(Object.assign(created, {status:200}));
         }).catch(error => {
             res.json({
                 status: 500,
