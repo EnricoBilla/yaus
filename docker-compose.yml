@@ -1,0 +1,15 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4
+    container_name: mongo
+    ports:
+      - "27017:27017"
+  yaus:
+    image: yaus:0.1.0
+    container_name: yaus
+    environment:
+      NODE_ENV: prod
+      MONGO_URL: mongo:27017/yaus
+    ports:
+      - "3000:3000"
